@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>Employee dashboard</title>
+</head>
+<body>
+<div align="center">
+    <h1>Employee Records</h1>
+    <a href="/newUser">Enter New Employee</a>
+    <br/><br/>
+    <table border="1" cellpadding="10">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Minit</th>
+                 <th>Last Name</th>
+                <th>SSN</th>
+                 <th>Birth Date</th>
+                <th>Address</th>
+                 <th>Sex</th>
+                <th>Salary</th>
+                <th>SuperSsn</th>
+                 <th>Dno</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="emp : ${listEmp}">
+                <td th:text="${emp.firstName}">fname</td>
+                <td th:text="${emp.mInt}">minit</td>
+                <td th:text="${emp.lastName}">lname</td>
+                <td th:text="${emp.ssn}">ssn</td>
+                <td th:text="${emp.bdate}">bdate</td>
+                <td th:text="${emp.address}">address</td>
+                <td th:text="${emp.sex}">sex</td>
+                <td th:text="${emp.salary}">salary</td>
+                <td th:text="${emp.superssn}">superssn</td>
+                <td th:text="${emp.dno}">dno</td>
+                <td th:text="${emp.email}">email</td>
+            </tr>
+        </tbody>
+    </table>
+</div>  
+</body>
+</html>
