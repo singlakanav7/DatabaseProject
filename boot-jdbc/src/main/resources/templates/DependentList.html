@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Employee dashboard</title>
+</head>
+<body bgcolor="lightblue">
+<h3 align="left"></h3><a href="/project/home">Home Page</a></h3>
+	<div align="center">
+		<h1>Dependent List</h1>
+		<br /> <br />
+		<table border="1" cellpadding="10">
+			<thead>
+				<tr>
+					<th>Essn</th>
+					<th>Dependent Name</th>
+					<th>Sex</th>
+					<th>Birth Date</th>
+					<th>Relationship</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="dependent : ${listDependent}">
+					<td th:text="${dependent.ssn}"></td>
+					<td th:text="${dependent.dName}"></td>
+					<td th:text="${dependent.sex}"></td>
+					<td th:text="${dependent.bdate}"></td>
+					<td th:text="${dependent.relationship}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

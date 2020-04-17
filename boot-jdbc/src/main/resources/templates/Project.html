@@ -3,13 +3,24 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Assign Project</title>
+<script>
+	function myFunction() {
+		var hour = Number(document.getElementById("hours").value);
+		if (hour > 40) {
+			window.alert("You can not enter more than 40 hours !");
+		}
+	}
+</script>
 </head>
-<body>
-	<h1> Project Mentioned</h1>
-
-
-
-
-
+<body align="center" bgcolor="FAEBD7">
+<h3 align="left"></h3><a href="/project/home">Home Page</a></h3>
+	<h1>Assign project</h1>
+	<form method="post" action="assign">
+		Enter Ssn <input type="text" name="ssn"></input><br> <br>
+		Enter Pno <input type="text" name="pno"></input><br> <br>
+		Enter Hour <input type="text" name="hours" onblur="myFunction()"></input><br>
+		<br>
+		<button type="submit">Assign Project</button>
+	</form>
 </body>
 </html>

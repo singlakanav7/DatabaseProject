@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Employee dashboard</title>
+</head>
+<body bgcolor="FAEBD7">
+<h3 align="left"></h3><a href="/project/home">Home Page</a></h3>
+	<div align="center">
+		<h1>Employee Records</h1>
+		<br />
+		<br />
+		<table border="1" cellpadding="10">
+			<thead>
+				<tr>
+					<th>First Name</th>
+					<th>Minit</th>
+					<th>Last Name</th>
+					<th>SSN</th>
+					<th>Birth Date</th>
+					<th>Address</th>
+					<th>Sex</th>
+					<th>Salary</th>
+					<th>SuperSsn</th>
+					<th>Dno</th>
+					<th>Email</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="emp : ${listEmp}">
+					<td th:text="${emp.firstName}"></td>
+					<td th:text="${emp.mInt}"></td>
+					<td th:text="${emp.lastName}"></td>
+					<td th:text="${emp.ssn}"></td>
+					<td th:text="${emp.bdate}"></td>
+					<td th:text="${emp.address}"></td>
+					<td th:text="${emp.sex}"></td>
+					<td th:text="${emp.salary}"></td>
+					<td th:text="${emp.superssn}"></td>
+					<td th:text="${emp.dno}"></td>
+					<td th:text="${emp.email}"></td>
+				</tr>
+			</tbody>
+		</table>
+		<h1>Dependents : </h1>
+		<form action="checkDependent" align="center" method="post">
+			<input type="checkbox"  name="yes" value="yes"><label for="yes"> I have Dependent</label><br> 
+			<input type="checkbox"  name="no" value="no"> <label for="no"> No, I do not have Dependent</label><br>
+			<br> <input type="submit" value="Submit">
+		</form>
+
+	</div>
+</body>
+</html>

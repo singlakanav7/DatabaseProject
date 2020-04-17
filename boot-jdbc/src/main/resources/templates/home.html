@@ -1,16 +1,42 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-	<title>Product Manager</title>
+<meta charset="utf-8" />
+<title>Employee dashboard</title>
 </head>
-<body bgcolor ="brown">
-<div align="center" cellpadding="10">
-	<h1> Product Manger</h1>
-	<h3>Welcome ssn :</h3><h3 th:text="${emp}"></h3>
-		<h4><a href="newUser">Insert New Employee</a></h4>
-		<h4><a href="project">Assign Project</a></h4>
-		<h4><a href="list">Employees List</a></h4>
-</div>
+<body bgcolor="FAEBD7">
+	<div align="center" cellpadding="10">
+		<marque>
+		<h1>Welcome to Manager's Portal</h1>
+		</marque>
+		<h3 align="right">
+			<a href="/project/">LOGOUT</a>
+		</h3>
+		<h1 th:text="${emp.firstName}"></h1>
+		<h1>Dashboard :-</h1>
+		<br /> <br />
+		<table border="1" cellpadding="10">
+			<thead>
+				<tr>
+					<th>Employee</th>
+					<th>Dependents</th>
+					<th>Project</th>
+					<th>Report</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><a href="newUser">Insert Employee</a></td>
+					<td><a href="findDependent">Find Dependent from Employee</a></td>
+					<td><a href="findProject">Find Project from Employee</a></td>
+					<td><a href="findReport">Generate Employee Report</a></td>
+				</tr>
+				<tr>
+					<td><a href="list">Employees List</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </body>
 </html>

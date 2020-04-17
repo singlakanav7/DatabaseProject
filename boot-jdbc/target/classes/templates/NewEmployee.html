@@ -1,67 +1,29 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
 <meta charset="utf-8" />
 <title>New Sale</title>
 </head>
-<body>
-    <div align="center">
-        <h1>Employee New User</h1>
-        <br />
-        <form action="#" th:action="@{/save}" th:object="${emp}"
-            method="post">
-  
-            <table border="0" cellpadding="10">
-                <tr>
-                    <td>First Name</td>
-                    <td><input type="text" th:field="*{firstName}" /></td>
-                </tr>
-                <tr>
-                    <td>Minit</td>
-                    <td><input type="text" th:field="*{mInt}" /></td>
-                </tr>
-                <tr>
-                    <td>Last Name</td>
-                    <td><input type="text" th:field="*{lastName}" /></td>
-                </tr>       
-                <tr>
-                    <td>Ssn</td>
-                    <td><input type="text" th:field="*{ssn}" /></td>
-                </tr>
-                <tr>
-                    <td>Bdate</td>
-                    <td><input type="text" th:field="*{bdate}" /></td>
-                </tr>
-                <tr>
-                    <td>Address</td>
-                    <td><input type="text" th:field="*{address}" /></td>
-                </tr>             
-                <tr>
-                    <td>Sex</td>
-                    <td><input type="text" th:field="*{sex}" /></td>
-                </tr>
-                <tr>
-                    <td>Salary</td>
-                    <td><input type="text" th:field="*{salary}" /></td>
-                </tr>
-                <tr>
-                    <td>Superssn</td>
-                    <td><input type="text" th:field="*{superssn}" /></td>
-                </tr>  
-                <tr>
-                    <td>Dno</td>
-                    <td><input type="text" th:field="*{dno}" /></td>
-                </tr>
-                <tr>
-                    <td>Email</td>
-                    <td><input type="text" th:field="*{email}" /></td>
-                </tr>             
-                <tr>           
-                <tr>
-                    <td colspan="2"><button type="submit">Save</button> </td>
-                </tr>
-            </table>
-        </form>
-    </div>
+<body bgcolor="lightblue">
+	<div align="center">
+	<h3 align="left"></h3><a href="/project/home">Home Page</a></h3>
+		<h1>Employee New User</h1>
+		<br />
+		<form method="post" action="new" align="center">
+			Enter First Name<input type="text" name="fname"></input><br>
+			<br> Enter Minit <input type="text" name="mid"></input><br>
+			<br> Enter Last Name<input type="text" name="lname"></input><br>
+			<br> Enter Ssn <input type="text" name="ssn"></input><br>
+			<br> Enter Birth Date<input type="text" name="bdate"></input><br>
+			<br> Enter Address <input type="text" name="address"></input><br>
+			<br> Enter Sex<input type="text" name="sex"></input><br>
+			<br> Enter Salary <input type="text" name="sal"></input><br>
+			<br> Enter Superssn<input type="text" name="superssn"></input><br>
+			<br> Enter Dno <input type="text" name="dno"></input><br>
+			<br> Enter Email<input type="text" name="email"></input><br>
+			<br>
+			<button type="submit">Submit</button>
+		</form>
+	</div>
 </body>
+</html>
