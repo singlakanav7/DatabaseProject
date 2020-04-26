@@ -13,4 +13,6 @@ public interface WorksOnDAO {
 	List<WorksOn> getDependentBySsn(String ssn);
 	
 	int checkProject(WorksOn w);
+	
+	void deleteProject(String id);
 }

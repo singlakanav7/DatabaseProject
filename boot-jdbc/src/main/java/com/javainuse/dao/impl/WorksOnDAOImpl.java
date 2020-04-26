@@ -8,6 +8,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.javainuse.connection.OracleJdbcConnection;
 import com.javainuse.model.Employee;
 import com.javainuse.model.WorksOn;
@@ -20,6 +23,8 @@ import com.javainuse.model.WorksOn;
  */
 public class WorksOnDAOImpl implements WorksOnDAO {
 
+	static Logger logger = LoggerFactory.getLogger(EmployeeDAOImpl.class.getName());
+
 	EmployeeDAOImpl emp = new EmployeeDAOImpl();
 
 	private Connection conn = OracleJdbcConnection.getDatabaseConnection();
@@ -28,11 +33,21 @@ public class WorksOnDAOImpl implements WorksOnDAO {
 
 	@Override
 	public int assignProject(WorksOn w) {
+
+		if (w == null) {
+			logger.error("The works On object is null");
+		}
 		// 1) An employee may not work on more than two projects managed by his/her
 		// department.
 		int resultValue = 0;
 		float hr = w.getHours();
+		if (hr == 0.0) {
+			logger.error("The hours returned is zero");
+		}
 		float hours = getProjectHours(w.getSsn());
+		if (hours == 0.0) {
+			logger.error("The Project hours returned is zero");
+		}
 		if (40 - hours >= hr) {
 			try {
 				resultValue++;
@@ -43,12 +58,12 @@ public class WorksOnDAOImpl implements WorksOnDAO {
 
 				ResultSet rowInserted = statement.executeQuery();
 				if (rowInserted == null) {
-					System.out.println("Insertion Unsuccessfull");
+					logger.error("Insertion Unsuccessfull");
 				} else {
-					System.out.println("Insertion Successfull");
+					logger.info("Insertion Successfull");
 				}
 			} catch (SQLException e1) {
-				e1.printStackTrace();
+				logger.error(e1.getMessage(), e1);
 			}
 		}
 
@@ -56,6 +71,9 @@ public class WorksOnDAOImpl implements WorksOnDAO {
 	}
 
 	public float getProjectHours(String ssn) {
+		if (ssn == null) {
+			logger.info("The ssn entered is null");
+		}
 		float hours = 0;
 		String selectQuery = "select * from works_on where essn =" + ssn;
 		try {
@@ -67,14 +85,14 @@ public class WorksOnDAOImpl implements WorksOnDAO {
 			}
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			logger.error(e1.getMessage(), e1);
 		}
 		return hours;
 	}
 
 	@Override
 	public List<WorksOn> listProjects() {
-		List<WorksOn> list = new ArrayList();
+		List<WorksOn> list = new ArrayList<WorksOn>();
 
 		try {
 			Statement statement = conn.createStatement();
@@ -90,11 +108,11 @@ public class WorksOnDAOImpl implements WorksOnDAO {
 			}
 
 			for (WorksOn print : list) {
-				System.out.println(print.toString());
+				logger.info(print.toString());
 			}
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			logger.error(e1.getMessage(), e1);
 		}
 
 		return list;
@@ -103,9 +121,13 @@ public class WorksOnDAOImpl implements WorksOnDAO {
 
 	@Override
 	public List<WorksOn> getDependentBySsn(String ssn) {
+
+		if (ssn == null) {
+			logger.error("the ssn entered is null");
+		}
 		List<WorksOn> list = new ArrayList<>();
 		String query = "select * from works_on where essn = " + ssn;
-		System.out.println(query);
+		logger.info(query);
 		try {
 			Statement statement = conn.createStatement();
 			ResultSet result = statement.executeQuery(query);
@@ -120,7 +142,7 @@ public class WorksOnDAOImpl implements WorksOnDAO {
 
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			logger.error(e1.getMessage(), e1);
 		}
 		return list;
 
@@ -128,13 +150,23 @@ public class WorksOnDAOImpl implements WorksOnDAO {
 
 	@Override
 	public int checkProject(WorksOn w) {
+
+		if (w == null) {
+			logger.error("The object of the works on is null");
+		}
 		int res = 0;
 		String ssn = w.getSsn();
+		if (ssn == null) {
+			logger.info("The ssn entered is  null");
+		}
 		Employee employee = emp.getEmployeeBySsn(ssn);
+		if (employee == null) {
+			logger.info("The employee object return is null");
+		}
 		String dno = employee.getDno();
 		String query = "select count(w.pno) AS total from works_on w,project p where w.essn =" + ssn + "and p.pnumber="
 				+ w.getPno() + "and p.dnum=" + dno;
-		System.out.println(query);
+		logger.info(query);
 		try {
 			Statement statement = conn.createStatement();
 			ResultSet result = statement.executeQuery(query);
@@ -144,10 +176,28 @@ public class WorksOnDAOImpl implements WorksOnDAO {
 
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			logger.error(e1.getMessage(), e1);
 		}
 
 		return res;
+	}
+
+	@Override
+	public void deleteProject(String id) {
+		if (id == null) {
+			logger.error("The id entered is wrong");
+		}
+		String query = "delete from works_on where pno=" + id;
+		logger.info(query);
+		try {
+			Statement statement = conn.createStatement();
+			ResultSet result = statement.executeQuery(query);
+
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			logger.error(e1.getMessage(), e1);
+		}
+
 	}
 
 }

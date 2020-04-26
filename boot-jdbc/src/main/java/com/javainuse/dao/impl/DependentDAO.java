@@ -3,7 +3,6 @@ package com.javainuse.dao.impl;
 import java.util.List;
 
 import com.javainuse.model.Dependent;
-import com.javainuse.model.WorksOn;
 
 /**
  * Dependent DAO Interface

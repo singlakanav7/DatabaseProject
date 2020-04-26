@@ -1,21 +1,53 @@
 package com.javainuse.model;
 
+import java.sql.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * @author Kanav Singla
  *
  */
+
+@Entity
+@Table(name = "Employee")
 public class Employee {
 
+	@Column(name = "first_name")
 	String firstName;
+
+	@Column(name = "mInt")
 	String mInt;
+
+	@Column(name = "lastName")
 	String lastName;
+
+	@Id
+	@Column(name = "ssn")
 	String ssn;
-	String bdate;
+
+	@Column(name = "bdate")
+	Date bdate;
+
+	@Column(name = "address")
 	String address;
+
+	@Column(name = "sex")
 	String sex;
+
+	@Column(name = "salary")
 	String salary;
+
+	@Column(name = "superssn")
 	String superssn;
+
+	@Column(name = "dno")
 	String dno;
+
+	@Column(name = "email")
 	String email;
 
 	public Employee() {
@@ -23,9 +55,8 @@ public class Employee {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Employee(String firstName, String mInt, String lastName, String ssn, String bdate, String address,
-			String sex, String salary, String superssn, String dno, String email) {
-		super();
+	public Employee(String firstName, String mInt, String lastName, String ssn, Date bdate, String address, String sex,
+			String salary, String superssn, String dno, String email) {
 		this.firstName = firstName;
 		this.mInt = mInt;
 		this.lastName = lastName;
@@ -71,11 +102,11 @@ public class Employee {
 		this.ssn = ssn;
 	}
 
-	public String getBdate() {
+	public Date getBdate() {
 		return bdate;
 	}
 
-	public void setBdate(String bdate) {
+	public void setBdate(Date bdate) {
 		this.bdate = bdate;
 	}
 
