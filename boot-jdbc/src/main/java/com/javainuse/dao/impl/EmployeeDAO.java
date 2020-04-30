@@ -23,6 +23,6 @@ public interface EmployeeDAO {
 
 	void deleteEmployee(String ssn);
 	
-	void updateEmployee(Employee e);
+	void updateEmployee(Employee e,String ssn);
 
 }

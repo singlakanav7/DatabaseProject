@@ -1,10 +1,14 @@
 package com.javainuse;
 
 import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
+/** Spring Boot Application
+ * @author Kanav Singla
+ *
+ */
 @SpringBootApplication
 public class SpringBootJdbcApplication {
 
@@ -12,6 +16,7 @@ public class SpringBootJdbcApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootJdbcApplication.class, args);
+		logger.info("Spring Boot Application Started");
 
 	}
 }
